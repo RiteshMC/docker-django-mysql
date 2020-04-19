@@ -19,7 +19,7 @@ For information, see the [IZE Backlog page](https://ize.backlog.jp/git/ALS_SOURC
 
 ## How to start
 ```
-$ git clone https://github.com/RiteshMC/docker-django-mysql.git
+$ git clone https://github.com/Riteshmc/docker-django-mysql.git
 $ cd docker-django-mysql
 $ docker-compose build
 $ docker-compose up -d
