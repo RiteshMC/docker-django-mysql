@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    command: ['mysqld', '--character-set-server=utf8', '--collation-server=utf8_general_ci']
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_DATABASE: "anken_dev"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "abc123"
+    container_name: "anken_db"
+
+  web:
+    container_name: "anken_web"
+    build: .
+    command: sh -c "/usr/wait-for-it.sh db root 123456 ; python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./webapp:/var/www/webapp
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
